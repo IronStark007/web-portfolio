@@ -12,7 +12,9 @@ export const ImageDetails = (props) => {
         `https://api.unsplash.com/photos/${params.id}/?per_page=20&client_id=${process.env.REACT_APP_API_ACCESS_KEY}`
       )
       .then((res) => setImageData(res.data));
-  }, [params]);
+    props.setSearchKey("");
+    props.searchRef.current.value = "";
+  }, [params, props]);
   return (
     <>
       {imageData.id ? (

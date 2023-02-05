@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   Navbar,
   Container,
@@ -11,20 +11,31 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
-  const searchRef = useRef();
   const navigate = useNavigate();
 
   const formSubmitted = (e) => {
     e.preventDefault();
-    props.setSearchKey(searchRef.current.value);
-    navigate(`/search/?q=${searchRef.current.value}`);
+    props.setSearchKey(props.searchRef.current.value);
+    navigate(`/search/?q=${props.searchRef.current.value}`);
   };
+
+  const titleHandler = (e) => {
+    e.preventDefault();
+    props.setSearchKey("");
+    props.searchRef.current.value = "";
+    navigate("/");
+  };
+
   return (
     <>
       <Navbar bg="light" expand="lg">
         <Container fluid>
           <Navbar.Brand>
-            <Link to="/" style={{ textDecoration: "None", color: "black" }}>
+            <Link
+              to="/"
+              style={{ textDecoration: "None", color: "black" }}
+              onClick={titleHandler}
+            >
               GeekGallery
             </Link>
           </Navbar.Brand>
@@ -41,7 +52,7 @@ const Header = (props) => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
-                ref={searchRef}
+                ref={props.searchRef}
               />
               <Button variant="outline-success" onClick={formSubmitted}>
                 Search
