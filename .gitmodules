@@ -1,0 +1,6 @@
+[submodule "employee-management-system"]
+	path = employee-management-system
+	url = https://github.com/IronStark007/employee-management-system
+[submodule "parking-management-system"]
+	path = parking-management-system
+	url = https://github.com/IronStark007/parking-management-system
